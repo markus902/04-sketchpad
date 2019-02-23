@@ -1,0 +1,86 @@
+<body>
+  <h1 class='headline'>Draw something!</h1>
+  <button onclick='createGrid()'>Create Grid</button>
+  <button onclick='reset()'>Reset</button>
+  
+  <form id="gridsize">
+      <h4>Choose the grid size:</h4>
+      <input type="number" name="x" id="test" value="">
+  </form>
+    
+
+  <div id='gridcontainer'>
+  </div>
+  
+
+
+</body>
+
+<script>
+
+let index = [];
+let boxes;
+let change;
+let cols;
+let rows;
+let columns = 'auto';
+let wrapper;
+
+
+console.log(cols);
+
+let gridcontainer = document.querySelector('#gridcontainer');
+
+
+function createGrid(){
+
+    wrapper = document.createElement('div');
+    wrapper.setAttribute('style', 'width: 20px; display: grid; grid-gap: 1px;');
+    gridcontainer.appendChild(wrapper);  
+  
+  createCols();
+
+    rows = cols * cols - 1;
+
+  for(i=0;i<rows;i++){ 
+    index.push('box' + i);
+    boxes = document.createElement('div');
+    boxes.classList.add(index[i]);
+    boxes.setAttribute('style','width: 20; height: 20; background: blue; margin: 5px;');
+    boxes.addEventListener('mouseover', changeColor)
+    wrapper.appendChild(boxes);    
+  }}
+    
+
+function createCols(){
+
+  cols = document.getElementById('gridsize').elements.item(0).value;
+  
+  for(i=0;i<cols;i++){
+    columns = columns + ' auto';
+    console.log(columns);
+  }
+    wrapper.style.gridTemplateColumns = columns;
+  }
+  
+
+function changeColor(e){
+    e.target.style.background = "red";
+  }
+
+
+function reset(){
+
+  console.log(boxes)
+
+      gridcontainer.removeChild(wrapper);
+
+    cols = 0;
+    rows = 0;
+    columns = 0;
+    console.log(columns);
+  }
+
+</script>
+
+
